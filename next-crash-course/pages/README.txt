@@ -1,0 +1,1 @@
+NextJS allows you to skip the router and just put the components you want for each page in the page folder and access via '/fileName'
