@@ -9,7 +9,7 @@ const Article = ({article}) => {
     >
       <a className={styles.card}>
         <h3>{article.title} &rarr;</h3>
-        <p>{article.body}</p>
+        <p>{article.excerpt}</p>
       </a>
     </Link>
   );

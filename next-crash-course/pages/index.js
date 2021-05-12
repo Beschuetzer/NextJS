@@ -1,15 +1,13 @@
-import Head from 'next/head';
+import Meta from '../components/Meta';
 import ArticleList from '../components/ArticleList';
+import { server} from '../config';
 
 export default function Home({articles}) {
   console.log('articles =', articles);
   return (
     <div>
       {/* adding SEO using Head component       */}
-      <Head>
-        <title>WebDev News </title>
-        <meta name='keywords' content='web dev, programming, etc'/>
-      </Head>
+      <Meta/>
       <ArticleList
         articles={articles}
       />
@@ -17,11 +15,9 @@ export default function Home({articles}) {
   )
 }
 
-//data fetching via methods/functions for passing data as props to pages
 
-//fetch at build time
 export const getStaticProps = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=6');
+  const res = await fetch(`${server}/api/articles`);
   const articles = await res.json();
 
   return {
@@ -30,6 +26,21 @@ export const getStaticProps = async () => {
     }
   }
 }
+
+
+//data fetching via methods/functions for passing data as props to pages
+
+//fetch at build time
+// export const getStaticProps = async () => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=6');
+//   const articles = await res.json();
+
+//   return {
+//     props: {
+//       articles,
+//     }
+//   }
+// }
 
 //fetch at every request 
 // export const getServerSideProps = () => {
